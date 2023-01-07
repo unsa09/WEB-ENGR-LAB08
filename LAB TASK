@@ -1,1 +1,93 @@
+function calculator(op1, op2, operator) {
+  // call operator and pass it two parameters op1, op2
+  const result = operator(op1, op2);
+
+  // return the result from calculator function
+  return result;
+}
+
+// validate the result by logging the result
+console.log(calculator(2, 3, (x, y) => x + y)); // logs 5
+console.log(calculator(2, 3, (x, y) => x * y)); // logs 6
+
+function getFullName() {
+  // using this keyword return full name string built by concatenating firstname and lastname
+  return `${this.firstname} ${this.lastname}`;
+}
+
+// create two objects containing firstname and lastname
+const obj1 = { firstname: 'John', lastname: 'Doe' };
+const obj2 = { firstname: 'Jane', lastname: 'Doe' };
+
+// call getFullName using function built-in apply method and passing it the created objects one by one
+console.log(getFullName.apply(obj1)); // logs 'John Doe'
+console.log(getFullName.apply(obj2)); // logs 'Jane Doe'
+
+function Timer() {
+  let counter = 0;
+
+  // private tick method
+  function tick(limit) {
+    // use setInterval to increment the counter after 1 second and console.log counter variable
+    const intervalId = setInterval(() => {
+      counter += 1;
+
+      if (counter > limit) {
+        clearInterval(intervalId);
+      } else {
+        console.log(counter);
+      }
+    }, 1000);
+  }
+
+  // public start method
+  function start(limit) {
+    tick(limit);
+  }
+
+  // return the start method by creating an object and assigning the start method as a public API
+  return {
+    start,
+  };
+}
+
+// create a Timer closure
+const timer = Timer();
+
+// start the timer
+timer.start(5); // logs 1, 2, 3, 4, 5
+
+function Student() {
+  // parent module
+  const Student = {
+    firstname: 'John',
+    lastname: 'Doe',
+  };
+
+  // child sub-module Courses
+  Student.Courses = {
+    course1: 'Math',
+    course2: 'Science',
+  };
+
+  // child sub-module Result
+  Student.Result = {
+    marks1: 90,
+    marks2: 80,
+  };
+
+  return Student;
+}
+
+// create a Student module using closure
+const student = Student();
+
+// log each property via module and sub-module properties
+console.log(student.firstname); // logs 'John'
+console.log(student.Courses.course1); // logs 'Math'
+console.log(student.Result.marks1); // logs 90
+
+async function getProgramResults() {
+  // create a promise called runProgramPromise inside it
+  const runProgramPromise = new
 
