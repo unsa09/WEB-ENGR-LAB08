@@ -1,1 +1,102 @@
+function publishSubscribeExamResults() {
+  const subscribers = []; // private member array called subscribers
+
+  return {
+    subscribe: function(subscriber) {
+      subscribers.push(subscriber);
+    },
+    publish: function(message) {
+      subscribers.forEach(function(subscriber) {
+        subscriber(message);
+      });
+    }
+  };
+}
+
+const Class = (function() {
+  const Teacher = {
+    name: 'John',
+    age: 35,
+    teach: function() {
+      console.log('Teaching...');
+    }
+  };
+
+  const Notes = {
+    notes: 'Class notes',
+    getNotes: function() {
+      return this.notes;
+    }
+  };
+
+  const Lecture = {
+    lecture: 'Lecture 1',
+    giveLecture: function() {
+      console.log(`Giving lecture: ${this.lecture}`);
+    }
+  };
+
+  return {
+    Teacher,
+    Notes,
+    Lecture
+  };
+})();
+
+// creating instances of Class module
+const mathClass = Class;
+const scienceClass = Class;
+
+console.log(mathClass.Teacher.name); // "John"
+console.log(mathClass.Notes.getNotes()); // "Class notes"
+mathClass.Lecture.giveLecture(); // "Giving lecture: Lecture 1"
+
+console.log(scienceClass.Teacher.name); // "John"
+console.log(scienceClass.Notes.getNotes()); // "Class notes"
+scienceClass.Lecture.giveLecture(); // "Giving lecture: Lecture 1"
+
+
+async function ClassAlarm() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('Class is over');
+    }, 30 * 60 * 1000); // 30 minutes in milliseconds
+  });
+}
+
+async function main() {
+  const message = await ClassAlarm();
+  console.log(message);
+}
+
+main();
+
+function Gadget(startTime, salePrice) {
+  this.startTime = startTime;
+  this.salePrice = salePrice;
+}
+
+Gadget.prototype.start = function() {
+  console.log('Starting gadget...');
+};
+
+Gadget.prototype.end = function() {
+  console.log('Ending gadget...');
+};
+
+function StopWatch(startTime, salePrice, color) {
+  Gadget.call(this, startTime, salePrice);
+  this.color = color;
+}
+
+StopWatch.prototype = Object.create(Gadget.prototype);
+StopWatch.prototype.constructor = StopWatch;
+
+const stopWatch1 = new StopWatch('10:00', 30, 'red');
+console.log(stopWatch1.startTime); // "10:00"
+console.log(stopWatch1.salePrice); // 30
+console.log(stopWatch1.color); // "red"
+
+function SmartWatch(startTime, salePrice, color)
+
 
