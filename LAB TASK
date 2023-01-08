@@ -16,12 +16,12 @@ function getFullName() {
 }
 
 // create two objects containing firstname and lastname
-const obj1 = { firstname: 'John', lastname: 'Doe' };
-const obj2 = { firstname: 'Jane', lastname: 'Doe' };
+const obj1 = { firstname: 'Unsa', lastname: 'Athar' };
+const obj2 = { firstname: 'Hafsa', lastname: 'Zafar' };
 
 // call getFullName using function built-in apply method and passing it the created objects one by one
-console.log(getFullName.apply(obj1)); // logs 'John Doe'
-console.log(getFullName.apply(obj2)); // logs 'Jane Doe'
+console.log(getFullName.apply(obj1)); // logs 'Unsa Athar'
+console.log(getFullName.apply(obj2)); // logs 'Hafsa Zafar'
 
 function Timer() {
   let counter = 0;
